@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import type { PianoKey as PianoKeyType } from '../../piano-app/piano-app/src/types/piano';
+import type { PianoKey as PianoKeyType } from '../types/piano.ts';
 
 interface PianoKeyProps {
   pianoKey: PianoKeyType;
