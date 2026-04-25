@@ -1,73 +1,109 @@
-# React + TypeScript + Vite
+# Resonance 🎹
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A virtual grand piano powered by real concert grand piano samples — rich, warm, and true to life.
 
-Currently, two official plugins are available:
+Nocturne brings the expressiveness of an acoustic instrument to your browser. Play across two octaves with your keyboard, mouse, or touch screen, with a natural key layout that actually feels like playing. No install, no account.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Authentic Piano Sound** — Real concert grand piano samples stream at runtime. No synth approximations.
+- **Keyboard Play** — Two full octaves mapped ergonomically across your QWERTY keyboard, designed to feel natural under your fingers.
+- **Mouse & Touch Support** — Fully playable with a mouse or on any touch screen device.
+- **Sustain Pedal** — Hold `Space` to sustain notes, just like a real pedal.
+- **Volume Control** — Smooth slider to dial in the perfect level.
+- **Keyboard Guide** — On-screen overlay showing every key mapping, toggleable at any time.
+- **Classic Design** — Skeuomorphic mahogany and ivory aesthetic with realistic key press animations.
+- **Reverb** — Subtle hall reverb applied to every note for a natural, spacious sound.
+- **Responsive** — Works on desktop, tablet, and mobile.
+- **Zero Dependencies on You** — No login, no setup, no file downloads.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Keyboard Mapping
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+Black:  S  D     G  H  J  │  2  3     5  6  7
+White:  Z  X  C  V  B  N  M  Q  W  E  R  T  Y  U  I
+Note:   C3 D3 E3 F3 G3 A3 B3 C4 D4 E4 F4 G4 A4 B4 C5
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+`Space` — Sustain pedal
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 18 + TypeScript |
+| Build Tool | Vite 5 |
+| Audio Engine | Tone.js 14 |
+| Samples | Salamander Grand Piano (CC BY 3.0) |
+| Styling | Pure CSS — no UI framework |
+
+---
+
+## Project Structure
+
 ```
+src/
+├── hooks/
+│   ├── usePianoSound.ts      # Tone.js sampler, reverb, attack/release
+│   ├── useKeyboardMapping.ts # Keyboard events, sustain, repeat prevention
+│   └── usePianoState.ts      # Active notes, volume, sustain state
+├── components/
+│   ├── Piano.tsx             # Keyboard layout and key positioning
+│   ├── PianoKey.tsx          # Individual white/black key
+│   ├── Controls.tsx          # Volume, sustain, guide toggle
+│   ├── Header.tsx            # Title and load status
+│   └── KeyboardGuide.tsx     # On-screen key mapping overlay
+├── constants/
+│   └── pianoConfig.ts        # Key definitions, keyboard map, sample URLs
+└── types/
+    └── piano.ts              # Shared TypeScript types
+```
+
+---
+
+## Contributing
+
+Contributions are welcome. Please read the following before submitting.
+
+### What We Welcome
+
+- Bug fixes with a clear description of the problem and solution
+- Accessibility improvements (contrast, keyboard navigation, screen reader support)
+- Performance optimizations
+- Additional keyboard layouts or octave ranges
+- Mobile/touch experience improvements
+- New visual themes that match the existing design quality
+
+### What to Avoid
+
+- Introducing UI frameworks or heavy dependencies without prior discussion
+- Changes that break the existing keyboard mapping logic
+- Styling changes that deviate significantly from the classic aesthetic
+- Features that require a backend or user accounts — Nocturne is intentionally client-only
+
+### Guidelines
+
+- Keep hooks separated by concern — audio logic stays in `usePianoSound`, keyboard logic in `useKeyboardMapping`
+- Write TypeScript — no `any` types
+- Test on at least one mobile device before submitting UI changes
+- One feature or fix per pull request
+- Open an issue first for large or breaking changes
+
+### Code Style
+
+- Functional components only
+- Prefer `useCallback` and `useRef` for performance-sensitive handlers
+- CSS custom properties for all colors and spacing — no hardcoded hex values in new rules
+- Accessible by default — every interactive element needs an `aria-label`
+
+---
+
+## License
+
+MIT © Resonance

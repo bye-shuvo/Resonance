@@ -11,8 +11,8 @@ export const Header: React.FC<HeaderProps> = ({ isLoaded, isLoading }) => {
       <div id="project-info"><span>Created By : <a target='_' href='https://github.com/bye-shuvo'>Bye_Shuvo</a></span></div>
       <div className="header-ornament left">❧</div>
       <div className="header-center">
-        <h1 className="app-title">Grand Piano</h1>
-        <p className="app-subtitle">Salamander Concert Grand · Virtual Instrument</p>
+        <h1 className="app-title">Resonance</h1>
+        <p className="app-subtitle">· A virtual grand piano · Salamander Concert Grand · Virtual Instrument</p>
         <div className="load-status">
           {isLoading && (
             <span className="status-loading">
