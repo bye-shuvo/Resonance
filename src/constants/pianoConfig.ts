@@ -6,14 +6,14 @@ import type { PianoKey } from '../types/piano';
  * OCTAVE 3  (lower, Z-row):
  *   White:  Z=C3  X=D3  C=E3  V=F3  B=G3  N=A3  M=B3
  *   Black:  S=C#3 D=D#3       G=F#3 H=G#3 J=A#3
- *   (S/D/G/H/J sit spatially above Z/X/V/B/N on QWERTY)
  *
- * OCTAVE 4  (upper, Q-row):
+ * OCTAVE 4  (Q-row):
  *   White:  Q=C4  W=D4  E=E4  R=F4  T=G4  Y=A4  U=B4
  *   Black:  2=C#4 3=D#4       5=F#4 6=G#4 7=A#4
- *   (number row is above Q-row)
  *
- * HIGH C:   I=C5
+ * OCTAVE 5  (I-row):
+ *   White:  I=C5  O=D5  P=E5  [=F5  ]=G5  \=A5
+ *   Black:  8=C#5 9=D#5       -=F#5 ==G#5 0=A#5
  */
 export const KEYBOARD_MAP: Record<string, string> = {
   // Octave 3 whites
@@ -24,8 +24,10 @@ export const KEYBOARD_MAP: Record<string, string> = {
   q: 'C4', w: 'D4', e: 'E4', r: 'F4', t: 'G4', y: 'A4', u: 'B4',
   // Octave 4 blacks
   '2': 'C#4', '3': 'D#4', '5': 'F#4', '6': 'G#4', '7': 'A#4',
-  // High C
-  i: 'C5',
+  // Octave 5 whites
+  i: 'C5', o: 'D5', p: 'E5', '[': 'F5', ']': 'G5', '\\': 'A5',
+  // Octave 5 blacks
+  '8': 'C#5', '9': 'D#5', '-': 'F#5', '=': 'G#5', '0': 'A#5',
 };
 
 // Reverse map: note -> keyboard key label
@@ -43,35 +45,28 @@ function buildKeys(): PianoKey[] {
   const keys: PianoKey[] = [];
   let pos = 0;
 
+  // White keys: octave 3, 4, 5 (C5–A5, no B5)
   for (const octave of [3, 4] as const) {
     for (const wn of WHITE_NOTES) {
       const note = `${wn}${octave}`;
-      keys.push({
-        note,
-        keyboardKey: NOTE_TO_KEY[note] ?? '',
-        isBlack: false,
-        position: pos++,
-        octave,
-      });
+      keys.push({ note, keyboardKey: NOTE_TO_KEY[note] ?? '', isBlack: false, position: pos++, octave });
     }
   }
-  // High C
-  keys.push({ note: 'C5', keyboardKey: NOTE_TO_KEY['C5'] ?? 'I', isBlack: false, position: pos++, octave: 5 });
+  // Octave 5 whites: C5 D5 E5 F5 G5 A5
+  for (const wn of ['C', 'D', 'E', 'F', 'G', 'A']) {
+    const note = `${wn}5`;
+    keys.push({ note, keyboardKey: NOTE_TO_KEY[note] ?? '', isBlack: false, position: pos++, octave: 5 });
+  }
 
-  // Black keys
+  // Black keys: octave 3, 4, 5
   let blackPos = 0;
-  for (const octave of [3, 4] as const) {
+  for (const octave of [3, 4, 5] as const) {
     for (const wn of WHITE_NOTES) {
+      if (octave === 5 && (wn === 'A' || wn === 'B')) continue; // A#5 skip (no B5), B has no sharp
       const bn = BLACK_NOTES[wn];
       if (bn) {
         const note = `${bn}${octave}`;
-        keys.push({
-          note,
-          keyboardKey: NOTE_TO_KEY[note] ?? '',
-          isBlack: true,
-          position: blackPos++,
-          octave,
-        });
+        keys.push({ note, keyboardKey: NOTE_TO_KEY[note] ?? '', isBlack: true, position: blackPos++, octave });
       }
     }
   }

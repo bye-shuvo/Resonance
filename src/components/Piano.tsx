@@ -1,18 +1,19 @@
 import React, { useCallback, useRef } from 'react';
 import { PianoKey } from './PianoKey';
-import { WHITE_KEYS, BLACK_KEYS } from '../constants/pianoConfig';
+import { WHITE_KEYS, BLACK_KEYS } from '../constants/pianoConfig.ts';
 
-// Black key offsets as percentages within the white-key grid
-// Pattern per octave: after C(0), D(1), no E, F(3), G(4), A(5), no B
-// We have 15 white keys (7+7+1). Each is 100/15 wide.
-// Black keys sit between white keys.
-const WHITE_KEY_COUNT = WHITE_KEYS.length; // 15
+// White keys: C3-B3(7) + C4-B4(7) + C5-A5(6) = 20
+const WHITE_KEY_COUNT = 20;
 
 function getBlackKeyLeft(note: string): number {
-  // Map each black key note to its white-key boundary position
+  // Index of white key immediately to the left of each black key
   const blackKeyPositions: Record<string, number> = {
-    'C#3': 0,  'D#3': 1,  'F#3': 3,  'G#3': 4,  'A#3': 5,
-    'C#4': 7,  'D#4': 8,  'F#4': 10, 'G#4': 11, 'A#4': 12,
+    // Octave 3 (white indices 0-6)
+    'C#3': 0, 'D#3': 1, 'F#3': 3, 'G#3': 4, 'A#3': 5,
+    // Octave 4 (white indices 7-13)
+    'C#4': 7, 'D#4': 8, 'F#4': 10, 'G#4': 11, 'A#4': 12,
+    // Octave 5 (white indices 14-19: C5 D5 E5 F5 G5 A5)
+    'C#5': 14, 'D#5': 15, 'F#5': 17, 'G#5': 18,
   };
   const idx = blackKeyPositions[note];
   if (idx === undefined) return 0;

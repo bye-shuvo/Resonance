@@ -5,6 +5,7 @@ export const KeyboardGuide: React.FC = () => {
     <div className="keyboard-guide" role="complementary" aria-label="Keyboard mapping guide">
       <h3 className="guide-title">Keyboard Mapping</h3>
       <div className="guide-octaves">
+
         <div className="guide-octave">
           <span className="guide-octave-label">Octave 3</span>
           <div className="guide-keys">
@@ -64,15 +65,30 @@ export const KeyboardGuide: React.FC = () => {
         <div className="guide-divider">│</div>
 
         <div className="guide-octave">
-          <span className="guide-octave-label">C5</span>
+          <span className="guide-octave-label">Octave 5</span>
           <div className="guide-keys">
-            <div className="guide-row"><span className="guide-gap wide" /></div>
+            <div className="guide-row">
+              <span className="guide-chip black">8</span>
+              <span className="guide-chip black">9</span>
+              <span className="guide-gap" />
+              <span className="guide-chip black">-</span>
+              <span className="guide-chip black">=</span>
+            </div>
             <div className="guide-row">
               <span className="guide-chip white">I</span>
+              <span className="guide-chip white">O</span>
+              <span className="guide-chip white">P</span>
+              <span className="guide-chip white">[</span>
+              <span className="guide-chip white">]</span>
+              <span className="guide-chip white">\</span>
             </div>
-            <div className="guide-row notes"><span>C</span></div>
+            <div className="guide-row notes">
+              <span>C</span><span>D</span><span>E</span>
+              <span>F</span><span>G</span><span>A</span>
+            </div>
           </div>
         </div>
+
       </div>
       <p className="guide-note">
         <kbd>Space</kbd> — Sustain pedal

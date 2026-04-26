@@ -5,7 +5,7 @@ import { VitePWA } from "vite-plugin-pwa"
 export default defineConfig({
   plugins: [react() , VitePWA({
     registerType : 'autoUpdate',
-      workbox: {
+  workbox: {
     // Workbox is Google's Service Worker library
     globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
     // Specifies file patterns to cache
