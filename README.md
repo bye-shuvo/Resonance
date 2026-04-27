@@ -2,7 +2,7 @@
 
 > A virtual grand piano powered by real concert grand piano samples — rich, warm, and true to life.
 
-Nocturne brings the expressiveness of an acoustic instrument to your browser. Play across two octaves with your keyboard, mouse, or touch screen, with a natural key layout that actually feels like playing. No install, no account.
+Resonance brings the expressiveness of an acoustic instrument to your browser. Play across two octaves with your keyboard, mouse, or touch screen, with a natural key layout that actually feels like playing. No install, no account.
 
 ---
 
@@ -24,9 +24,9 @@ Nocturne brings the expressiveness of an acoustic instrument to your browser. Pl
 ## Keyboard Mapping
 
 ```
-Black:  S  D     G  H  J  │  2  3     5  6  7
-White:  Z  X  C  V  B  N  M  Q  W  E  R  T  Y  U  I
-Note:   C3 D3 E3 F3 G3 A3 B3 C4 D4 E4 F4 G4 A4 B4 C5
+Black:  S  D     G  H  J  │  2  3     5  6  7  │  8  9     -  =
+White:  Z  X  C  V  B  N  M  Q  W  E  R  T  Y  U  I  O  P  [  ]  \
+Note:   C3 D3 E3 F3 G3 A3 B3 C4 D4 E4 F4 G4 A4 B4 C5 D5 E5 F5 G5 A5
 ```
 
 `Space` — Sustain pedal
