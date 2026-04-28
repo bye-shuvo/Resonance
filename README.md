@@ -3,6 +3,7 @@
 > A virtual grand piano powered by real concert grand piano samples — rich, warm, and true to life.
 
 Resonance brings the expressiveness of an acoustic instrument to your browser. Play across two octaves with your keyboard, mouse, or touch screen, with a natural key layout that actually feels like playing. No install, no account.
+Resonance brings the expressiveness of an acoustic instrument to your browser. Play across two octaves with your keyboard, mouse, or touch screen, with a natural key layout that actually feels like playing. No install, no account.
 
 ---
 
