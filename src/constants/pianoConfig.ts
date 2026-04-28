@@ -25,7 +25,7 @@ export const KEYBOARD_MAP: Record<string, string> = {
   // Octave 4 blacks
   '2': 'C#4', '3': 'D#4', '5': 'F#4', '6': 'G#4', '7': 'A#4',
   // Octave 5 whites
-  i: 'C5', o: 'D5', p: 'E5', '[': 'F5', ']': 'G5', '\\': 'A5',
+  i: 'C5', o: 'D5', p: 'E5', '[': 'F5', ']': 'G5', '\\': 'A5', "'": 'B5',
   // Octave 5 blacks
   '8': 'C#5', '9': 'D#5', '-': 'F#5', '=': 'G#5', '0': 'A#5',
 };
@@ -52,8 +52,8 @@ function buildKeys(): PianoKey[] {
       keys.push({ note, keyboardKey: NOTE_TO_KEY[note] ?? '', isBlack: false, position: pos++, octave });
     }
   }
-  // Octave 5 whites: C5 D5 E5 F5 G5 A5
-  for (const wn of ['C', 'D', 'E', 'F', 'G', 'A']) {
+  // Octave 5 whites: C5–B5
+  for (const wn of ['C', 'D', 'E', 'F', 'G', 'A', 'B']) {
     const note = `${wn}5`;
     keys.push({ note, keyboardKey: NOTE_TO_KEY[note] ?? '', isBlack: false, position: pos++, octave: 5 });
   }
@@ -62,7 +62,6 @@ function buildKeys(): PianoKey[] {
   let blackPos = 0;
   for (const octave of [3, 4, 5] as const) {
     for (const wn of WHITE_NOTES) {
-      if (octave === 5 && (wn === 'A' || wn === 'B')) continue; // A#5 skip (no B5), B has no sharp
       const bn = BLACK_NOTES[wn];
       if (bn) {
         const note = `${bn}${octave}`;

@@ -73,6 +73,7 @@ export const KeyboardGuide: React.FC = () => {
               <span className="guide-gap" />
               <span className="guide-chip black">-</span>
               <span className="guide-chip black">=</span>
+              <span className="guide-chip black">0</span>
             </div>
             <div className="guide-row">
               <span className="guide-chip white">I</span>
@@ -81,10 +82,11 @@ export const KeyboardGuide: React.FC = () => {
               <span className="guide-chip white">[</span>
               <span className="guide-chip white">]</span>
               <span className="guide-chip white">\</span>
+              <span className="guide-chip white">'</span>
             </div>
             <div className="guide-row notes">
               <span>C</span><span>D</span><span>E</span>
-              <span>F</span><span>G</span><span>A</span>
+              <span>F</span><span>G</span><span>A</span><span>B</span>
             </div>
           </div>
         </div>
